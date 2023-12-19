@@ -1,0 +1,207 @@
+.site-header-inner{
+  margin-left: 10px;
+  margin-right: 10px;
+  @include medium{
+    @include max-width;
+  }
+  display: grid;
+  grid-template-columns:1fr;
+  grid-template-rows: auto;
+
+  @include limit-smedium{
+    .#{$theme_prefix}-post-header-widget-area,
+    .#{$theme_prefix}-pre-header-widget-area{
+      grid-column: 1 / span 2 !important;
+    }
+  }
+
+  @include limit-medium{
+
+    .#{$theme_prefix}-post-header-widget-area{
+      grid-area: right;
+    }
+
+    .#{$theme_prefix}-pre-header-widget-area{
+      grid-area: left;
+    }
+
+
+    body.#{$theme_prefix}-header-pre-widgets.#{$theme_prefix}-header-post-widgets &{
+      grid-template-columns:max-content;
+      grid-template: "main main"
+      "left right";
+
+      .site-branding{
+        grid-area: main;
+      }
+
+    }
+
+    body:not(.#{$theme_prefix}-header-post-widgets).#{$theme_prefix}-header-pre-widgets &{
+      grid-template-columns:1fr;
+      grid-template: "main"
+                      "left";
+      .site-branding{
+        grid-area: main;
+      }
+    }
+
+    body:not(.#{$theme_prefix}-header-pre-widgets).#{$theme_prefix}-header-post-widgets &{
+      grid-template-columns:1fr;
+      grid-template: "main"
+                    "right";
+      .site-branding{
+        grid-area: main;
+      }
+    }
+
+  }
+
+  @include medium{
+  
+    body:not(.#{$theme_prefix}-header-post-widgets).#{$theme_prefix}-header-pre-widgets &{
+      grid-template: "left main";
+      grid-template-rows: auto;
+      grid-template-columns:1fr 340px;
+
+      .#{$theme_prefix}-pre-header-widget-area{
+        grid-area: left;
+      }
+
+      .site-branding{
+        grid-area: main;
+      }
+    }
+
+    body:not(.#{$theme_prefix}-header-pre-widgets).#{$theme_prefix}-header-post-widgets &{
+      grid-template:"main right";
+      grid-template-rows: auto;
+      grid-template-columns:340px 1fr ;
+
+      .#{$theme_prefix}-pre-header-widget-area{
+        grid-area: left;
+      }
+
+      .site-branding{
+        grid-area: main;
+      }
+
+    }
+
+    body.#{$theme_prefix}-header-pre-widgets.#{$theme_prefix}-header-post-widgets &{
+      grid-template:"left main right";
+      grid-template-rows: auto;
+      grid-template-columns:1fr 340px 1fr;
+
+      .#{$theme_prefix}-post-header-widget-area{
+        grid-area: right;
+      }
+
+      .#{$theme_prefix}-pre-header-widget-area{
+        grid-area: left;
+      }
+
+      .site-branding{
+        grid-area: main;
+      }
+
+    }
+
+    body.#{$theme_prefix}-logo-position-left.#{$theme_prefix}-header-pre-widgets.#{$theme_prefix}-header-post-widgets &{
+      @include medium{
+        grid-template:"main left right";
+        grid-template-columns:1fr max-content max-content;
+      }
+
+    }
+
+    body.#{$theme_prefix}-logo-position-right.#{$theme_prefix}-header-pre-widgets.#{$theme_prefix}-header-post-widgets &{
+      grid-template: "left right main";
+      grid-template-columns: max-content max-content 1fr;
+
+    }
+
+  }
+
+}
+
+
+
+.top-header-container{
+  .top-header-inner{
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns:1fr;
+    @include medium{
+      grid-template-columns:1fr 1fr;
+    }
+  }
+
+  .#{$theme_prefix}-top-header-widget-area{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    @include limit-medium{
+      justify-content: center;
+    }
+  }
+
+}
+
+.top-header-container{
+  @include limit-small{
+    display: none;
+  }
+}
+
+body.#{$theme_prefix}-header-menu-under{
+  @include large{
+    .sticky-header{
+      margin-bottom: 30px;
+    }
+  }
+}
+
+body.#{$theme_prefix}-header-menu-under .site-header{
+  @include medium{
+    .main-navigation {
+      padding: 3px 0;
+    }
+  }
+}
+
+//----------- THEME STYLING START -----------
+
+.site-viewport{
+  max-width: $size__site;
+  margin: 0 auto;
+  @include limit-smedium{
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
+
+.site-header{
+  body.#{$theme_prefix}-header-menu-under & {
+    @include medium{
+      .main-navigation{
+        border-top: 1px solid;
+        border-bottom: 1px solid;
+        border-color: $color__border-input;
+      }
+    }
+  }
+}
+
+.sticky-header{
+  @include smedium{
+    position: fixed;
+    opacity: 0;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+}
+
+//----------- THEME STYLING END -----------

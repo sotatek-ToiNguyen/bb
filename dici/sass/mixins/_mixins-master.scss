@@ -1,0 +1,320 @@
+// Rem output with px fallback
+@mixin font-size($sizeValue: 1) {
+	//font-size: $sizeValue * 1rem;
+	font-size: ($sizeValue * 15) * 1px;
+}
+
+/* Ensure all font family declarations come with non-latin fallbacks */
+@mixin font-family( $font_family: $font__body ) {
+	font-family: $font_family;
+	//@extend %non-latin-fonts;
+}
+
+/* Build our non-latin font styles */
+%non-latin-fonts {
+	@each $lang, $font__fallback in $font__fallbacks {
+		&:lang(#{$lang}) {
+			font-family: unquote( $font__fallback );
+		}
+	}
+}
+
+// Center block
+@mixin center-block {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+// Clearfix
+@mixin clearfix() {
+	content: "";
+	display: table;
+	table-layout: fixed;
+}
+
+// Clear after (not all clearfix need this also)
+@mixin clearfix-after() {
+	clear: both;
+}
+
+// Column width with margin
+@mixin column-width($numberColumns: 3) {
+	width: map-get( $columns, $numberColumns ) - ( ( $columns__margin * ( $numberColumns - 1 ) ) / $numberColumns );
+}
+
+// Basic Animation
+@mixin anim($param1, $param2: '', $param3: ''){
+	@if $param3 != '' {
+		transition:$param1 $animation__time $animation__easing, $param2 $animation__time $animation__easing, $param3 $animation__time $animation__easing;
+	} @elseif $param2 != '' {
+		transition:$param1 $animation__time $animation__easing, $param2 $animation__time $animation__easing;
+	} @else {
+		transition:$param1 $animation__time $animation__easing;
+	}
+}
+
+// Underscore hover animation
+@mixin underscore(){
+
+
+}
+
+// Decorated Heading
+
+@mixin heading_underline(){
+
+	position: relative;
+
+	margin-bottom: 3rem;
+
+	&:after{
+		content: '';
+		display: block;
+		width: 4rem;
+		height: 1px;
+		background-color: $color__accent;
+
+		position: absolute;
+		bottom: -1rem;
+		left: 50%;
+		transform: translateX(-50%);
+
+	}
+
+}
+
+
+@mixin diamod_deco(){
+	&:before{
+		content: '';
+		display: inline-block;
+		margin-right: 10px;
+		width: 16px;
+		height: 13px;
+		line-height: inherit;
+		vertical-align: middle;
+		background: url('assets/img/widget_title_bullet.jpg') no-repeat center center;
+		background-size: contain;
+	}
+}
+
+@mixin heading_deco(){
+	position: relative;
+	margin-bottom: 4rem;
+
+	&:after{
+		width: 108px;
+		height: 15px;
+		display: block;
+		content: '';
+
+		background: url("assets/img/title_o.png") no-repeat;
+		background-size: cover;
+
+		position: absolute;
+
+		bottom: -36px;
+		left: 50%;
+		transform: translateX(-50%);
+
+	}
+
+}
+
+// Button style
+
+@mixin btn() {
+	/*border: 2px solid;
+	border-color: $color__border-button;*/
+	border: none;
+	border-radius: 3rem;
+	background: $color__background-button;
+	color: $color__text-button;
+	@include font-size(0.800);
+	font-weight: 600;
+	letter-spacing: 0.7px;
+	padding: 10px 22px 8px;
+	text-transform: uppercase;
+	text-decoration: none;
+
+	cursor: pointer;
+
+	@include anim(color, background-color, border-color);
+
+	&:hover {
+		border-color: $color__border-button-hover;
+		background-color: $color__background-button-hover;
+	}
+
+	&:active,
+	&:focus {
+		border-color: $color__border-button-hover;
+		background-color: $color__background-button-hover;
+	}
+
+	&:disabled{
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+}
+
+// Listed Items bullets
+@mixin bullet {
+	list-style: none;
+	position: relative;
+	padding-left: 1.5rem;
+	margin: 10px 0;
+
+	&:before{
+		position:absolute;
+		border: 2px solid #888686;
+		width: 8px;
+		height: 8px;
+		top: calc(1em - 8px);
+		left: 0;
+		content:'';
+		@include anim(background-color, border-color);
+	}
+
+	li{
+		font-weight: normal;
+		a{
+			font-weight: normal;
+		}
+		&:before{
+			width: 4px;
+			height: 4px;
+			background-color: $color__accent;
+			top: calc(1em - 6px);
+			border: none;
+		}
+
+
+
+		li{
+			&:before{
+				background-color: transparent;
+			}
+
+
+		}
+	}
+}
+
+@mixin bullet-disk{
+  padding-left: 1em;
+  position: relative;
+  &:before{
+    display: block;
+    content: '';
+
+    position: absolute;
+    top: calc(0.875em - 3px);
+    left: 0;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background-color: $color__accent;
+  }
+}
+
+// Media Queries Mixin
+@mixin x-small {
+	@media screen and ( min-width: $break_xsmall ) {
+		@content;
+	}
+}
+
+@mixin limit-x-small {
+	@media screen and ( max-width: $break_xsmall - 1px ) {
+		@content;
+	}
+}
+
+@mixin small {
+	@media screen and ( min-width: $break_small ) {
+		@content;
+	}
+}
+
+@mixin limit-small {
+	@media screen and ( max-width: $break_small - 1px ) {
+		@content;
+	}
+}
+
+@mixin smedium {
+	@media screen and ( min-width: $break_smedium ) {
+		@content;
+	}
+}
+
+@mixin limit-smedium {
+	@media screen and ( max-width: $break_smedium - 1px ) {
+		@content;
+	}
+}
+
+@mixin medium {
+	@media screen and ( min-width: $break_medium ) {
+		@content;
+	}
+}
+
+@mixin limit-medium {
+	@media screen and ( max-width: $break_medium - 1px ) {
+		@content;
+	}
+}
+
+@mixin large {
+	@media screen and ( min-width: $break_large ) {
+		@content;
+	}
+}
+
+@mixin limit-large {
+	@media screen and ( max-width: $break_large - 1 ) {
+		@content;
+	}
+}
+
+@mixin max-width{
+	margin-left: 30px;
+	margin-right: 30px;
+	max-width: $size__content_width;
+	@include large{
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+}
+
+@mixin media( $res ) {
+	@if mobile == $res {
+		@media only screen and (min-width: $break_small) {
+			@content;
+		}
+	}
+
+	@if tablet == $res {
+		@media only screen and (min-width: $break_medium) {
+			@content;
+		}
+	}
+
+	@if desktop == $res {
+		@media only screen and (min-width: $break_medium) {
+			@content;
+		}
+	}
+
+	@if wide == $res {
+		@media only screen and (min-width: $break_large) {
+			@content;
+		}
+	}
+}

@@ -1,0 +1,48 @@
+table {
+	margin: 0 0 1.5em;
+	width: 100%;
+}
+
+.entry-content,
+.comment-content{
+
+	table {
+		overflow-x: auto;
+		display: table;
+		border-collapse: collapse;
+		width: auto;
+		max-width: 100%;
+		& tbody {
+			width: 100%;
+			min-width: 240px;
+		}
+
+		& td,
+		& th {
+			padding: 10px 1rem;
+			border: 1px solid currentColor;
+			vertical-align: middle;
+			text-align: center;
+			p:first-of-type{
+				margin-top: 0;
+			}
+			p:last-of-type{
+				margin-bottom: 0;
+			}
+		}
+
+		@include limit-smedium{
+			width: 100%;
+			-webkit-overflow-scrolling: touch;
+			overflow-x: auto;
+			display: block;
+
+			td,
+			th{
+
+			}
+		}
+
+	}
+
+}

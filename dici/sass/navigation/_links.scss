@@ -1,0 +1,49 @@
+a {
+	color: $color__link;
+
+	@include anim(color);
+
+	&:visited {
+		color: $color__link-visited;
+	}
+	&:hover,
+	&:focus,
+	&:active {
+		color: $color__link-hover;
+
+		&:after{
+			transform: translate3d(0,0,0);
+			opacity: 1;
+		}
+
+	}
+	&:focus {
+		//outline: thin dotted;
+		outline: none;
+	}
+	&:hover,
+	&:active {
+		outline: 0;
+	}
+}
+
+//--------------THEME STYLE START-----------
+.site-content,
+.offcanvas-sidebar{
+	li:not(.product):not(.accordion-item){
+		a:not(.comment-reply-link):not(#cancel-comment-reply-link):not(.page-numbers){
+			display: inline;
+			position: relative;
+			text-decoration: none;
+			@include anim(color);
+		}
+	}
+}
+
+.site-content{
+	.page-links{
+		margin: 15px 0 !important;
+	}
+}
+
+//--------------THEME STYLE END--------------

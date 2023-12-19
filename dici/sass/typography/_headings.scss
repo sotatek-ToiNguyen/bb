@@ -1,0 +1,32 @@
+/*-------------- THEME START ------------ */
+
+h1, h2, h3, h4, h5, h6{
+	font-weight: 500;
+	letter-spacing: 0.5px;
+}
+
+h1{
+	font-size: $font__size-xxxl;
+}
+
+h2{
+	font-size: $font__size-xxl;
+}
+
+h3{
+	font-size: $font__size-xl;
+}
+
+h4{
+	font-size: $font__size-lg;
+}
+
+h5{
+	font-size: $font__size-md;
+}
+
+h6{
+	font-size: $font__size-sm;
+}
+
+/*-------------- THEME END ------------ */

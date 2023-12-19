@@ -1,0 +1,182 @@
+/**
+ * Checkout
+ */
+
+.woocommerce-checkout{
+	.entry-content{
+		.woocommerce{
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+	}
+}
+
+.form-row{
+	margin-top: 0;
+	margin-bottom: 1em;
+	input[type="text"],
+	input[type="number"],
+	input[type="email"],
+	input[type="password"],
+	input[type="tel"]{
+		width: 100%;
+	}
+}
+
+.form-row-first,
+.form-row-last{
+	width: 100%;
+	@include smedium{
+		width: 49.73%;
+		display: inline-block;
+	}
+}
+
+@include smedium {
+	.form-row-first {
+		padding-right: 15px;
+	}
+
+	.form-row-last {
+		padding-left: 15px;
+		right: 0;
+	}
+}
+
+form.woocommerce-checkout{
+	@include clearfix;
+	display: grid;
+	grid-column-gap: $size__grid-checkout-gap;
+	@include medium{
+		grid-template-columns:7fr 5fr;
+		grid-template-rows: auto;
+		grid-template-areas:
+						"notice notice"
+						"form cart"
+						"form cart";
+
+		.woocommerce-NoticeGroup{
+			grid-area: notice;
+		}
+
+		.col2-set{
+			grid-area: form;
+		}
+
+		h3{
+			grid-area: cart;
+			font-family: inherit;
+			@include font-size(1.467);
+		}
+
+		.woocommerce-checkout-review-order{
+			grid-area: cart;
+			margin-top: 4.77em;
+
+			.woocommerce-checkout-review-order-inner{
+				position: sticky;
+				top: 1rem;
+				right:0;
+				border: 1px solid $color__border-input;
+				padding: 1rem;
+			}
+
+		}
+
+	}
+
+	#ship-to-different-address{
+		font-family: inherit;
+		@include font-size(0.824);
+		text-transform: uppercase;
+	}
+
+	.create-account{
+		span{
+			@include font-size(0.824);
+			text-transform: uppercase;
+		}
+	}
+
+}
+
+.woocommerce-checkout-payment{
+	ul{
+		list-style: none;
+		padding-left: 0;
+
+		.input-radio{
+
+			display: inline-block;
+			margin-right: 10px;
+			vertical-align: middle;
+			transform: translateY(-2px);
+		}
+
+		.payment_box{
+			margin-top: 10px;
+			padding: 1em;
+			background-color: $color__secondary_deco;
+			p:first-of-type{
+				margin-top: 0;
+			}
+			p:last-of-type{
+				margin-bottom: 0;
+			}
+		}
+
+		.payment_method_paypal{
+			img{
+				display: inline-block;
+				max-width: 200px;
+				height: auto;
+				vertical-align: middle;
+				margin: 0 1em;
+			}
+		}
+
+	}
+
+	.place-order{
+		text-align: center;
+	}
+
+	.button{
+		width: 100%;
+	}
+
+	.wc_payment_methods{
+		margin: 1rem;
+		li{
+			margin-bottom: 10px;
+			margin-top: 10px;
+			label{
+				display: inline-block;
+				vertical-align: middle;
+			}
+
+			img{
+				display: inline-block;
+				vertical-align: middle;
+			}
+		}
+
+	}
+}
+
+.woocommerce-order{
+	.woocommerce-thankyou-order-received{
+		font-size: 18px;
+	}
+}
+
+.woocommerce-checkout-review-order{
+
+	.shop_table{
+		.woocommerce-shipping-methods{
+			text-align: right;
+		}
+	}
+
+}
+

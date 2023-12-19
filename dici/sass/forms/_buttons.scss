@@ -1,0 +1,24 @@
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	@include btn();
+}
+
+/*-------------- THEME START------------ */
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"]{
+	text-transform: uppercase;
+	font-style: normal;
+	font-weight: 600;
+	letter-spacing: 0.7px;
+
+	&:focus{
+		outline: none;
+	}
+
+}
+
+/*-------------- THEME END------------ */
